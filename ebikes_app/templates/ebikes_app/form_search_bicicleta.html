@@ -1,0 +1,41 @@
+{% extends "ebikes_app/base.html" %}
+
+{% block cuerpo %}
+<div class="container-fluid p-3">
+    <div style="background-color: rgba(194, 190, 190, 0.2);">
+        <h4>Búsqueda de bicicleta por Marca</h4>
+    </div> 
+    <br>
+    <form action="" method="GET">
+        {{ busqueda }}
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if buscado %}
+
+        {% if bicicletas %}
+            <br>
+            <table class="table">
+                <thead>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Rodado</th>
+                    <th scope="col">Precio</th>
+                </thead>
+                <tbody>
+                    {% for bicicleta in bicicletas %}
+                    <tr>
+                        <td>{{bicicleta.marca}}</td>
+                        <td>{{bicicleta.modelo}}</td>
+                        <td>{{bicicleta.rodado}}</td>
+                        <td>${{bicicleta.precio}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h3>No hay Bicicletas con ese criterio!!!</h3>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
